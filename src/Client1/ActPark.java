@@ -158,19 +158,19 @@ public class ActPark extends JPanel {
 
         // Chỉnh IP theo đúng list Google Cloud
         if (sv.equals("Server 1")) {
-            ip = "34.28.67.13";
+            ip = "136.110.4.186";
             port = 2001;
         } else if (sv.equals("Server 2")) {
             ip = "34.28.238.63";
             port = 2002;
         } else if (sv.equals("Server 3")) {
-            ip = "136.114.153.146";
+            ip = "34.55.107.207";
             port = 2003;
         } else if (sv.equals("Server 4")) {
-            ip = "34.41.250.212";
+            ip = "34.71.156.133";
             port = 2004;
         } else if (sv.equals("Server 5")) {
-            ip = "34.42.41.5";
+            ip = "104.154.64.145";
             port = 2005;
         }
         if (!sv.equals(" ")) {
