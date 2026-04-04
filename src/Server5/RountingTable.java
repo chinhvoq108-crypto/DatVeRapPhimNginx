@@ -12,11 +12,11 @@ public class RountingTable {
     public RountingTable() {
         table = new VirtualCircle[5];
 
-        VirtualCircle Server1 = new VirtualCircle("34.28.67.13", 2001, "Server1");
+        VirtualCircle Server1 = new VirtualCircle("136.110.4.186", 2001, "Server1");
         VirtualCircle Server2 = new VirtualCircle("34.28.238.63", 2002, "Server2");
-        VirtualCircle Server3 = new VirtualCircle("136.114.153.146", 2003, "Server3");
-        VirtualCircle Server4 = new VirtualCircle("34.41.250.212", 2004, "Server4");
-        VirtualCircle Server5 = new VirtualCircle("34.42.41.5", 2005, "Server5");
+        VirtualCircle Server3 = new VirtualCircle("34.55.107.207", 2003, "Server3");
+        VirtualCircle Server4 = new VirtualCircle("34.71.156.133", 2004, "Server4");
+        VirtualCircle Server5 = new VirtualCircle("104.154.64.145", 2005, "Server5");
 
 
         table[0] = Server1;
