@@ -26,12 +26,10 @@ public class Database {
         }
     }
 
-    // Đã đổi tham số sang chuẩn Rạp phim (soghe, tenkhach, loaive, thanhtoan,
-    // giodat)
+    // Đã đổi tham số sang chuẩn Rạp phim (soghe, tenkhach, loaive, thanhtoan, giodat)
     public void insertData(String soghe, String tenkhach, String loaive, String thanhtoan, String giodat) {
-        // CHÚ Ý: Chép sang Server khác nhớ đổi chữ 'server1' thành 'server2',
-        // 'server3'...
-        String sSQL = "INSERT INTO server1 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
+        // Đã sửa thành server2
+        String sSQL = "INSERT INTO server2 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
                 + "','" + giodat + "')";
         try {
             stmt.executeUpdate(sSQL);
@@ -42,8 +40,8 @@ public class Database {
 
     public void delData(String id) {
         try {
-            // Hủy vé theo số ghế
-            String sSQL = "DELETE FROM server1 WHERE soghe='" + id + "'";
+            // Hủy vé theo số ghế (Đã sửa thành server2)
+            String sSQL = "DELETE FROM server2 WHERE soghe='" + id + "'";
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
             System.out.println("Lỗi Delete: " + e.getMessage());
@@ -53,7 +51,8 @@ public class Database {
     public String getData() {
         String pos, num, type, clr, time, st = "";
         try {
-            String sSQL = "SELECT * FROM server1";
+            // Đã sửa thành server2
+            String sSQL = "SELECT * FROM server2";
             rs = stmt.executeQuery(sSQL);
             while (rs.next()) {
                 pos = rs.getString("soghe"); // Vị trí -> Số ghế
@@ -62,8 +61,7 @@ public class Database {
                 clr = rs.getString("thanhtoan"); // Màu xe -> Thanh toán
                 time = rs.getString("giodat"); // Giờ đến -> Giờ đặt
 
-                // Vẫn giữ nguyên cấu trúc ghép chuỗi bằng dấu "|" để ProcessData cắt không bị
-                // lỗi
+                // Vẫn giữ nguyên cấu trúc ghép chuỗi bằng dấu "|" để ProcessData cắt không bị lỗi
                 st = st + pos + "|" + num + "|" + type + "|" + clr + "|" + time + "|";
             }
         } catch (Exception e) {
@@ -75,7 +73,8 @@ public class Database {
     public boolean isEmpty(String id) {
         boolean check = true;
         try {
-            String sSQL = "SELECT soghe FROM server1 WHERE soghe='" + id + "'";
+            // Đã sửa thành server2
+            String sSQL = "SELECT soghe FROM server2 WHERE soghe='" + id + "'";
             rs = stmt.executeQuery(sSQL);
             if (rs.next()) {
                 check = false; // Nếu tìm thấy số ghế này trong DB nghĩa là đã bị đặt
@@ -89,7 +88,8 @@ public class Database {
     public boolean querySQL(String soghe, String tenkhach, String loaive, String thanhtoan) {
         boolean check = true;
         try {
-            String sSQL = "SELECT * FROM server1 WHERE soghe='" + soghe + "'"
+            // Đã sửa thành server2
+            String sSQL = "SELECT * FROM server2 WHERE soghe='" + soghe + "'"
                     + "AND tenkhach='" + tenkhach + "'"
                     + "AND loaive='" + loaive + "'"
                     + "AND thanhtoan='" + thanhtoan + "'";
