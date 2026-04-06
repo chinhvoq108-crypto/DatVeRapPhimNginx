@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Database {
 
     String drivername = "com.mysql.cj.jdbc.Driver";
-    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true";
+    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     String username = "root";
     String password = "root"; 
     Statement stmt = null;
@@ -21,35 +21,35 @@ public class Database {
             conn = DriverManager.getConnection(connectionURL, username, password);
             stmt = conn.createStatement();
         } catch (Exception ex) {
-            System.out.println("Lỗi kết nối CSDL Server 4: " + ex.getMessage());
+            System.out.println("Lỗi kết nối CSDL Server 5: " + ex.getMessage());
         }
     }
 
     public void insertData(String soghe, String tenkhach, String loaive, String thanhtoan, String giodat) {
-        // Đã sửa thành server4
+        // Đã sửa thành server5
         String sSQL = "INSERT INTO server4 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
                 + "','" + giodat + "')";
         try {
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Insert Server 4: " + e.getMessage());
+            System.out.println("Lỗi Insert Server 5: " + e.getMessage());
         }
     }
 
     public void delData(String id) {
         try {
-            // Đã sửa thành server4
+            // Đã sửa thành server5
             String sSQL = "DELETE FROM server4 WHERE soghe='" + id + "'";
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Delete Server 4: " + e.getMessage());
+            System.out.println("Lỗi Delete Server 5: " + e.getMessage());
         }
     }
 
     public String getData() {
         String pos, num, type, clr, time, st = "";
         try {
-            // Đã sửa thành server4
+            // Đã sửa thành server5
             String sSQL = "SELECT * FROM server4";
             rs = stmt.executeQuery(sSQL);
             while (rs.next()) {
@@ -68,7 +68,7 @@ public class Database {
     public boolean isEmpty(String id) {
         boolean check = true;
         try {
-            // Đã sửa thành server4
+            // Đã sửa thành server5
             String sSQL = "SELECT soghe FROM server4 WHERE soghe='" + id + "'";
             rs = stmt.executeQuery(sSQL);
             if (rs.next()) {
@@ -82,7 +82,7 @@ public class Database {
     public boolean querySQL(String soghe, String tenkhach, String loaive, String thanhtoan) {
         boolean check = true;
         try {
-            // Đã sửa thành server4
+            // Đã sửa thành server5
             String sSQL = "SELECT * FROM server4 WHERE soghe='" + soghe + "'"
                     + "AND tenkhach='" + tenkhach + "'"
                     + "AND loaive='" + loaive + "'"
