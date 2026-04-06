@@ -1,4 +1,4 @@
-package Server2; // CHÚ Ý: Khi chép sang Server 2, 3, 4, 5 thì nhớ sửa số ở đây!
+package Server5; // Đã đổi sang gói Server5
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,11 +7,10 @@ import java.sql.Statement;
 
 public class Database {
 
-    // Đã nâng cấp Driver chuẩn cho MySQL đời mới để không bị lỗi kết nối
     String drivername = "com.mysql.cj.jdbc.Driver";
-    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true";
+    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     String username = "root";
-    String password = "root"; // Mật khẩu máy bro đang là root, tui giữ nguyên nhé
+    String password = "root"; 
     Statement stmt = null;
     ResultSet rs = null;
     Connection conn;
@@ -22,46 +21,43 @@ public class Database {
             conn = DriverManager.getConnection(connectionURL, username, password);
             stmt = conn.createStatement();
         } catch (Exception ex) {
-            System.out.println("Lỗi kết nối CSDL: " + ex.getMessage());
+            System.out.println("Lỗi kết nối CSDL Server 5: " + ex.getMessage());
         }
     }
 
-    // Đã đổi tham số sang chuẩn Rạp phim (soghe, tenkhach, loaive, thanhtoan, giodat)
     public void insertData(String soghe, String tenkhach, String loaive, String thanhtoan, String giodat) {
-        // Đã sửa thành server2
-        String sSQL = "INSERT INTO server2 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
+        // Đã sửa thành server5
+        String sSQL = "INSERT INTO server5 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
                 + "','" + giodat + "')";
         try {
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Insert: " + e.getMessage());
+            System.out.println("Lỗi Insert Server 5: " + e.getMessage());
         }
     }
 
     public void delData(String id) {
         try {
-            // Hủy vé theo số ghế (Đã sửa thành server2)
-            String sSQL = "DELETE FROM server2 WHERE soghe='" + id + "'";
+            // Đã sửa thành server5
+            String sSQL = "DELETE FROM server5 WHERE soghe='" + id + "'";
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Delete: " + e.getMessage());
+            System.out.println("Lỗi Delete Server 5: " + e.getMessage());
         }
     }
 
     public String getData() {
         String pos, num, type, clr, time, st = "";
         try {
-            // Đã sửa thành server2
-            String sSQL = "SELECT * FROM server2";
+            // Đã sửa thành server5
+            String sSQL = "SELECT * FROM server5";
             rs = stmt.executeQuery(sSQL);
             while (rs.next()) {
-                pos = rs.getString("soghe"); // Vị trí -> Số ghế
-                num = rs.getString("tenkhach"); // Biển số -> Tên khách
-                type = rs.getString("loaive"); // Hiệu xe -> Loại vé
-                clr = rs.getString("thanhtoan"); // Màu xe -> Thanh toán
-                time = rs.getString("giodat"); // Giờ đến -> Giờ đặt
-
-                // Vẫn giữ nguyên cấu trúc ghép chuỗi bằng dấu "|" để ProcessData cắt không bị lỗi
+                pos = rs.getString("soghe");
+                num = rs.getString("tenkhach");
+                type = rs.getString("loaive");
+                clr = rs.getString("thanhtoan");
+                time = rs.getString("giodat");
                 st = st + pos + "|" + num + "|" + type + "|" + clr + "|" + time + "|";
             }
         } catch (Exception e) {
@@ -69,27 +65,25 @@ public class Database {
         return st;
     }
 
-    // Hàm check xem ghế đã có người đặt chưa
     public boolean isEmpty(String id) {
         boolean check = true;
         try {
-            // Đã sửa thành server2
-            String sSQL = "SELECT soghe FROM server2 WHERE soghe='" + id + "'";
+            // Đã sửa thành server5
+            String sSQL = "SELECT soghe FROM server5 WHERE soghe='" + id + "'";
             rs = stmt.executeQuery(sSQL);
             if (rs.next()) {
-                check = false; // Nếu tìm thấy số ghế này trong DB nghĩa là đã bị đặt
+                check = false;
             }
         } catch (Exception e) {
         }
         return check;
     }
 
-    // Hàm truy vấn chi tiết 1 vé
     public boolean querySQL(String soghe, String tenkhach, String loaive, String thanhtoan) {
         boolean check = true;
         try {
-            // Đã sửa thành server2
-            String sSQL = "SELECT * FROM server2 WHERE soghe='" + soghe + "'"
+            // Đã sửa thành server5
+            String sSQL = "SELECT * FROM server5 WHERE soghe='" + soghe + "'"
                     + "AND tenkhach='" + tenkhach + "'"
                     + "AND loaive='" + loaive + "'"
                     + "AND thanhtoan='" + thanhtoan + "'";
