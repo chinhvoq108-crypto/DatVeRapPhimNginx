@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Database {
 
     String drivername = "com.mysql.cj.jdbc.Driver";
-    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true";
+    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     String username = "root";
     String password = "root"; 
     Statement stmt = null;
