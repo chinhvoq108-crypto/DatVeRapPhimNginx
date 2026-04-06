@@ -1,4 +1,4 @@
-package Server5; // Đã đổi sang gói Server5
+package Server3; // Đã đổi sang gói Server3
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +27,7 @@ public class Database {
 
     public void insertData(String soghe, String tenkhach, String loaive, String thanhtoan, String giodat) {
         // Đã sửa thành server5
-        String sSQL = "INSERT INTO server5 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
+        String sSQL = "INSERT INTO server3 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
                 + "','" + giodat + "')";
         try {
             stmt.executeUpdate(sSQL);
@@ -39,7 +39,7 @@ public class Database {
     public void delData(String id) {
         try {
             // Đã sửa thành server5
-            String sSQL = "DELETE FROM server5 WHERE soghe='" + id + "'";
+            String sSQL = "DELETE FROM server3 WHERE soghe='" + id + "'";
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
             System.out.println("Lỗi Delete Server 5: " + e.getMessage());
@@ -50,7 +50,7 @@ public class Database {
         String pos, num, type, clr, time, st = "";
         try {
             // Đã sửa thành server5
-            String sSQL = "SELECT * FROM server5";
+            String sSQL = "SELECT * FROM server3";
             rs = stmt.executeQuery(sSQL);
             while (rs.next()) {
                 pos = rs.getString("soghe");
@@ -69,7 +69,7 @@ public class Database {
         boolean check = true;
         try {
             // Đã sửa thành server5
-            String sSQL = "SELECT soghe FROM server5 WHERE soghe='" + id + "'";
+            String sSQL = "SELECT soghe FROM server3 WHERE soghe='" + id + "'";
             rs = stmt.executeQuery(sSQL);
             if (rs.next()) {
                 check = false;
@@ -83,7 +83,7 @@ public class Database {
         boolean check = true;
         try {
             // Đã sửa thành server5
-            String sSQL = "SELECT * FROM server5 WHERE soghe='" + soghe + "'"
+            String sSQL = "SELECT * FROM server3 WHERE soghe='" + soghe + "'"
                     + "AND tenkhach='" + tenkhach + "'"
                     + "AND loaive='" + loaive + "'"
                     + "AND thanhtoan='" + thanhtoan + "'";
