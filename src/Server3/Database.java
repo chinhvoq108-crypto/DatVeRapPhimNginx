@@ -1,4 +1,4 @@
-package Server3; // Đã đổi sang gói Server3
+package Server5; // Đã đổi sang gói Server5
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class Database {
 
     String drivername = "com.mysql.cj.jdbc.Driver";
-    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true";
+    String connectionURL = "jdbc:mysql://localhost:3306/db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     String username = "root";
     String password = "root"; 
     Statement stmt = null;
@@ -21,36 +21,36 @@ public class Database {
             conn = DriverManager.getConnection(connectionURL, username, password);
             stmt = conn.createStatement();
         } catch (Exception ex) {
-            System.out.println("Lỗi kết nối CSDL Server 3: " + ex.getMessage());
+            System.out.println("Lỗi kết nối CSDL Server 5: " + ex.getMessage());
         }
     }
 
     public void insertData(String soghe, String tenkhach, String loaive, String thanhtoan, String giodat) {
-        // Đã sửa thành server3
-        String sSQL = "INSERT INTO server3 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
+        // Đã sửa thành server5
+        String sSQL = "INSERT INTO server5 VALUES ('" + soghe + "','" + tenkhach + "','" + loaive + "','" + thanhtoan
                 + "','" + giodat + "')";
         try {
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Insert Server 3: " + e.getMessage());
+            System.out.println("Lỗi Insert Server 5: " + e.getMessage());
         }
     }
 
     public void delData(String id) {
         try {
-            // Đã sửa thành server3
-            String sSQL = "DELETE FROM server3 WHERE soghe='" + id + "'";
+            // Đã sửa thành server5
+            String sSQL = "DELETE FROM server5 WHERE soghe='" + id + "'";
             stmt.executeUpdate(sSQL);
         } catch (Exception e) {
-            System.out.println("Lỗi Delete Server 3: " + e.getMessage());
+            System.out.println("Lỗi Delete Server 5: " + e.getMessage());
         }
     }
 
     public String getData() {
         String pos, num, type, clr, time, st = "";
         try {
-            // Đã sửa thành server3
-            String sSQL = "SELECT * FROM server3";
+            // Đã sửa thành server5
+            String sSQL = "SELECT * FROM server5";
             rs = stmt.executeQuery(sSQL);
             while (rs.next()) {
                 pos = rs.getString("soghe");
@@ -68,8 +68,8 @@ public class Database {
     public boolean isEmpty(String id) {
         boolean check = true;
         try {
-            // Đã sửa thành server3
-            String sSQL = "SELECT soghe FROM server3 WHERE soghe='" + id + "'";
+            // Đã sửa thành server5
+            String sSQL = "SELECT soghe FROM server5 WHERE soghe='" + id + "'";
             rs = stmt.executeQuery(sSQL);
             if (rs.next()) {
                 check = false;
@@ -82,8 +82,8 @@ public class Database {
     public boolean querySQL(String soghe, String tenkhach, String loaive, String thanhtoan) {
         boolean check = true;
         try {
-            // Đã sửa thành server3
-            String sSQL = "SELECT * FROM server3 WHERE soghe='" + soghe + "'"
+            // Đã sửa thành server5
+            String sSQL = "SELECT * FROM server5 WHERE soghe='" + soghe + "'"
                     + "AND tenkhach='" + tenkhach + "'"
                     + "AND loaive='" + loaive + "'"
                     + "AND thanhtoan='" + thanhtoan + "'";
